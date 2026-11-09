@@ -343,6 +343,7 @@ h2::after{content:"";display:block;width:64px;height:6px;margin-top:14px;border-
 
 .hphoto,.rail,.cue{display:none}
 @media(min-width:1024px){
+ #intro{display:none!important}
  .hphoto{display:block;position:absolute;left:0;top:0;bottom:0;width:60%;z-index:1;overflow:hidden}
  .hphoto img{width:100%;height:100%;object-fit:cover;object-position:35% 50%;animation:hpz 22s ease-in-out infinite alternate}
  @keyframes hpz{from{transform:scale(1)}to{transform:scale(1.07)}}
@@ -699,6 +700,8 @@ function loop(t){
 function up(){tk=false;var h=document.documentElement.scrollHeight-innerHeight,p=h>0?scrollY/h:0;if(rf)rf.style.height=(p*100)+'%';if(cue)cue.classList.toggle('show',scrollY<60&&document.body.classList.contains('ready'));}
 addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(up);}},{passive:true});
 setInterval(up,600);up();})();
+/* ---- desktop: sem abertura, entra direto no inicio ---- */
+if(matchMedia('(min-width:1024px)').matches){step=3;intro.remove();html.classList.remove('lock');document.body.classList.add('ready');startMascot();}
 /* ---- faixa de eventos (duplica para laco continuo) ---- */
 ['mq','mq2','vq1','vq2'].forEach(function(i){var q=document.getElementById(i);q.innerHTML+=q.innerHTML;});
 
